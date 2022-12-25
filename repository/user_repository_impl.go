@@ -62,6 +62,11 @@ func (repository UserRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, u
 }
 
 func (repository UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.User {
+
+	// txs, err := repository.DB.Begin()
+	// if err != nil {
+	// 	panic(err)
+	// }
 	SQL := "select id,username,email from user"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
